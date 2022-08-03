@@ -56,4 +56,15 @@ public class ProductRepositoryTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void shouldNotForNotFoundException() {
+        ProductRepository repo = new ProductRepository();
+        repo.saveProducts(product1);
+        repo.saveProducts(product2);
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repo.removeProducts(3);
+        });
+
+    }
 }
